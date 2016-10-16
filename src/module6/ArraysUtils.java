@@ -1,6 +1,7 @@
-package module6;
+/* /package module6;
 
-import module2.HW1;
+//import module2.HW1;
+
 public final class ArraysUtils {
 
     public static int sum(int array[]){
@@ -56,3 +57,4 @@ public final class ArraysUtils {
         return count;
     }
 }
+*/
