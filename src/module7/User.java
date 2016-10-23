@@ -1,31 +1,13 @@
 package module7;
 
 
-public class User {
+public class User implements Comparable<User> {
+
     private long id;
     private String firstName;
     private String lastName;
     private String city;
     private int balance;
-
-    public User(long id, String firstName, String lastName, String city, int balance) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.city = city;
-        this.balance = balance;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", city='" + city + '\'' +
-                ", balance=" + balance +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -52,8 +34,15 @@ public class User {
         return result;
     }
 
-    public long getId() {
+    public User(long id, String firstName, String lastName, String city, int balance) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.balance = balance;
+    }
 
+    public long getId() {
         return id;
     }
 
@@ -91,5 +80,39 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        int result = 0;
+        long res = this.getId() - o.getId();
+        if (res > 0) result = 1;
+        if (res < 0) result = -1;
+        result = this.getBalance() - o.getBalance();
+        if (result == 0)
+        {
+            result = this.getFirstName().compareTo(o.getFirstName());
+            if (result == 0)
+            {
+                result = this.getLastName().compareTo(o.getLastName());
+                if (result == 0)
+                {
+                    result = this.getCity().compareTo(o.getCity());
+                }
+            }
+        }
+
+        return result;
     }
 }
